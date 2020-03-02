@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+		<title>アイテム一覧</title>
+	</head>
+	<body>
+		<h1>アイテム一覧</h1>
+		<form action="#" th:action="@{/itemlist}" th:object="${ItemListForm}" method="post">
+
+			<table class="table-sm table-striped table-hover" >
+				<thead  class="thead-light">
+				<tr>
+					<th>アイテムID</th>
+					<th>名前</th>
+					<th>価格</th>
+					<th>削除</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="item, stat : ${items}">
+					<td>
+						<span th:text="${item.itemId}"></span>
+						<input type="hidden" th:name="|itemList[${stat.index}].itemId|" th:value="${item.itemId}" />
+					</td>
+					<td>
+						<input type="text" th:name="|itemList[${stat.index}].itemName|" th:value="${item.itemName}" />
+					</td>
+					<td>
+						<input type="text" th:name="|itemList[${stat.index}].price|" th:value="${item.price}" />
+					</td>
+					<td>
+						<a href="" th:href="@{/deleteitem(item_id=${item.itemId})}" >削除</a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<input type="submit" value="更新" class="btn" />
+		</form>
+		<form action="#" th:action="@{/additem}" method="post">
+
+			<table>
+				<tr>
+					<th>アイテムID</th>
+					<th>名前</th>
+					<th>価格</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="itemId" />
+					</td>
+					<td>
+						<input type="text" name="itemName" />
+					</td>
+					<td>
+						<input type="text" name="price" />
+					</td>
+				</tr>
+			</table>
+
+			<input type="submit" value="登録" class="btn" />
+		</form>
+	</body>
+</html>
