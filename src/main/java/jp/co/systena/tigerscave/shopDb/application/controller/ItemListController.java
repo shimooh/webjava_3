@@ -35,8 +35,6 @@ public class ItemListController {
     return "itemlist";
   }
 
-
-
     /**
      * 「更新」ボタン押下時の処理
      * 入力された名前と価格をアイテムIDをキーとして更新する
